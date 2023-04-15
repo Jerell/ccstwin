@@ -4,7 +4,9 @@ project:
 book:
   title: "ccstwin"
   author: "Jerell James"
-  date: "15/04/2023"
+  public-url: https://jerell.me/ccstwin/
+  repo-url: https://github.com/Jerell/ccstwin
+  repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - intro.qmd
