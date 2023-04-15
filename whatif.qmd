@@ -1,0 +1,4 @@
+# What if?
+
+*What-if modelling* is the evaluation of the network given certain inputs.
+

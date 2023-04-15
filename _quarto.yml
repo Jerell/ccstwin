@@ -9,8 +9,12 @@ book:
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - part: Modelling
+      chapters:
+        - network.qmd
+        - whatif.qmd
+        - solving.qmd
+    - fluidproperties.qmd
     - references.qmd
 
 bibliography: references.bib
