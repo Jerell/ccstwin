@@ -18,7 +18,7 @@
     "href": "whatif.html",
     "title": "2  What if?",
     "section": "",
-    "text": "What-if modelling is the evaluation of the network given certain inputs.\nIt is not the same as solving the network."
+    "text": "What-if modelling is the evaluation of the network given certain inputs and constraints.\nIt is not the same as solving the network. The forward pass in our search loops could be considered what-if modelling because in that forward pass we’re asking what happens at the outlet if the inlet pressure is X but the output of the model isn’t the answer to that question.\nEvaluating f(x) = x^2 - 16 would look like f(x)\\vert_{x=5} = 9 whereas solving it might look like \nx^2 - 16 = 0 \\\\\n(x - 4)(x + 4) = 0 \\\\\nx = 4, x = -4\n\nWhat we’re making is closer to an algorithm for solving an equation using a particular method than it is to a function that can be evaluated with any inputs. And the method doesn’t work if certain assumptions aren’t true. And we make no attempt to validate those assumptions."
   },
   {
     "objectID": "solving.html",

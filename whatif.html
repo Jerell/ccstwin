@@ -61,6 +61,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -183,8 +199,14 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><em>What-if modelling</em> is the evaluation of the network given certain inputs.</p>
-<p>It is not the same as <a href="./solving.html">solving the network</a>.</p>
+<p><em>What-if modelling</em> is the evaluation of the network given certain inputs and constraints.</p>
+<p>It is not the same as <a href="./solving.html">solving the network</a>. The forward pass in our search loops could be considered <em>what-if modelling</em> because in that forward pass we’re asking <em>what happens at the outlet if the inlet pressure is X</em> but the output of the model isn’t the answer to that question.</p>
+<p>Evaluating <span class="math inline">f(x) = x^2 - 16</span> would look like <span class="math inline">f(x)\vert_{x=5} = 9</span> whereas solving it might look like <span class="math display">
+x^2 - 16 = 0 \\
+(x - 4)(x + 4) = 0 \\
+x = 4, x = -4
+</span></p>
+<p>What we’re making is closer to an algorithm for solving an equation using a particular method than it is to a function that can be evaluated with any inputs. And the method doesn’t work if certain assumptions aren’t true. And we make no attempt to validate those assumptions.</p>
 
 
 
