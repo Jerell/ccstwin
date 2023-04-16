@@ -61,6 +61,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -84,8 +100,28 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">ccstwin</a> 
-        <div class="sidebar-tools-main">
+        <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/Jerell/ccstwin" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
+    <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.pdf">
+            <i class="bi bi-bi-file-pdf pe-1"></i>
+          Download PDF
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.epub">
+            <i class="bi bi-bi-journal pe-1"></i>
+          Download ePub
+          </a>
+        </li>
+    </ul>
+  <a href="" class="quarto-reader-toggle sidebar-tool" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -111,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./network.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Network</span></a>
+  <a href="./networkcomposition.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Network composition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -141,7 +177,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#cpa" id="toc-cpa" class="nav-link active" data-scroll-target="#cpa"><span class="toc-section-number">4.1</span>  CPA</a>
+  <ul class="collapse">
+  <li><a href="#pressure-explicit-form" id="toc-pressure-explicit-form" class="nav-link" data-scroll-target="#pressure-explicit-form"><span class="toc-section-number">4.1.1</span>  Pressure explicit form</a></li>
+  <li><a href="#combining-rules" id="toc-combining-rules" class="nav-link" data-scroll-target="#combining-rules"><span class="toc-section-number">4.1.2</span>  Combining rules</a></li>
+  <li><a href="#other-properties" id="toc-other-properties" class="nav-link" data-scroll-target="#other-properties"><span class="toc-section-number">4.1.3</span>  Other properties</a></li>
+  </ul></li>
+  <li><a href="#pc-saft" id="toc-pc-saft" class="nav-link" data-scroll-target="#pc-saft"><span class="toc-section-number">4.2</span>  PC-SAFT</a>
+  <ul class="collapse">
+  <li><a href="#parameters-1" id="toc-parameters-1" class="nav-link" data-scroll-target="#parameters-1"><span class="toc-section-number">4.2.1</span>  Parameters</a></li>
+  <li><a href="#calculation-of-second-thermodynamic-derivative-properties" id="toc-calculation-of-second-thermodynamic-derivative-properties" class="nav-link" data-scroll-target="#calculation-of-second-thermodynamic-derivative-properties"><span class="toc-section-number">4.2.2</span>  Calculation of Second Thermodynamic Derivative Properties</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/fluidproperties.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -166,8 +218,238 @@ ul.task-list li input[type="checkbox"] {
 <p>We look up fluid properties from a tab file and we probably don’t have to.</p>
 <p>We’ve trained a neural network to predict fluid properties for different compositions and we probably don’t have to do that either.</p>
 <p>The neural network was trained on the tab files generated by Multiflash. The tab files are generated by calculating the properties using an equation of state. People publish their equations of state.</p>
+<p>It would probably take a day or two (maybe less but probably not significantly more) to implement an equation of state in code. I got <a href="https://github.com/Jerell/testProject.jl/blob/main/src/testProject.jl">most of the way there</a> but didn’t know what some of the parameters were in the first paper I looked at. After more reading it seems doable.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This below sections are largely just highlights from papers.</p>
+</div>
+</div>
+<section id="cpa" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="cpa"><span class="header-section-number">4.1</span> CPA</h2>
+<p>The <a href="https://www.sciencedirect.com/science/article/abs/pii/S0378381213003920">CPA equation of state</a> presented by Kontogeorgis et al.&nbsp;[19], [20] combines the physical term from the cubic Soave–Redlich–Kwong (SRK) EoS with an association term similar to that found in the statistical associating fluid theory (SAFT) models.</p>
+<section id="pressure-explicit-form" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="pressure-explicit-form"><span class="header-section-number">4.1.1</span> Pressure explicit form</h3>
+<p>On pressure explicit form, the CPA EoS <a href="https://backend.orbit.dtu.dk/ws/portalfiles/portal/105170143/Peter_J_rgensen_Herslund_978_87_93054_54_7.pdf">may be expressed</a>:</p>
+<p><span id="eq-cpa"><span class="math display">
+P = \frac{R \cdot T}{V_m - b} - \frac{\alpha(T)}{V_m \cdot (V_m + b)} - \frac{R \cdot T}{2 \cdot V_m} \\ \cdot \left[ 1 + \frac{1}{V_m} \cdot \frac{\partial \ln g}{\partial (1/V_m)} \right] \times \sum_i x_i \sum_{A_i} (1 - X_{A_i})
+\tag{4.1}</span></span></p>
+<p>where <span class="math inline">R</span> is the gas constant and <span class="math inline">T</span> is temperature. <span class="math inline">V_m</span> denotes the molar volume, <span class="math inline">\alpha(T)</span> is the temperature dependent SRK energy parameter and <span class="math inline">b</span> is the SRK co-volume parameter. <span class="math inline">g</span> is the hard sphere radial distribution function. <span class="math inline">A_i</span> denotes association site A on component <span class="math inline">i</span>. <span class="math inline">x_i</span> is the mole fraction of component <span class="math inline">i</span>, <span class="math inline">X_{A_i}</span> is the fraction of sites, type <span class="math inline">A</span> on component <span class="math inline">i</span> not bonded to other sites. CPA simplifies to the SRK EoS for non-associating systems.</p>
+<p>The fraction of non-bonded sites, <span class="math inline">X_{A_i}</span> is estimated by solving <a href="#eq-xai">Eq&nbsp;<span>4.2</span></a> and <a href="#eq-association-strength">Eq&nbsp;<span>4.3</span></a>.</p>
+<p><span id="eq-xai"><span class="math display">
+X_{A_i} = \left[ 1 + V_m ^{-1} \cdot \sum_j x_j \sum_{B_j} X_{B_j} \cdot \Delta^{A_iB_j} \right]
+\tag{4.2}</span></span></p>
+<p><a href="#eq-xai">Eq&nbsp;<span>4.2</span></a> is evaluated for all site types on all associating components. The summation over <span class="math inline">B_j</span> in <a href="#eq-xai">Eq&nbsp;<span>4.2</span></a> indicates summation over all association sites.<br>
+<span class="math inline">\Delta^{A_iB_j}</span> is the association strength between site A on molecule <span class="math inline">i</span> and site B on molecule <span class="math inline">j</span>. It is given by</p>
+<p><span id="eq-association-strength"><span class="math display">
+\Delta^{A_iB_j} = g(V_m)^{ref} \cdot [\exp(\epsilon^{A_iB_j} \cdot (R \cdot T)^{-1}) - 1] \cdot b_{ij} \cdot \beta^{A_iB_j}
+\tag{4.3}</span></span></p>
+<p><span class="math inline">\epsilon^{A_iB_j}</span> and <span class="math inline">\beta^{A_iB_j}</span> are the association energy and volume, respectively between site A on molecule <span class="math inline">i</span> and site B on molecule <span class="math inline">j</span>. <span class="math inline">g(V_m)^{ref}</span> is the contact value of the radial distribution function for the reference hard sphere fluid system was presented in a simplified form by Kontogeorgis et al.&nbsp;(sCPA [21]). Whereas earlier versions of CPA utilised the Carnahan–Starling expression for the hard-sphere radial distribution function, sCPA uses the expression shown in <a href="#eq-radial-distribution">Eq&nbsp;<span>4.4</span></a> for the simplified hard-sphere radial distribution function.</p>
+<p><span id="eq-radial-distribution"><span class="math display">
+g(V_m) = \left[1 - 1.9 \cdot b \cdot (4 \cdot V_m)^{-1}\right]^{-1}
+\tag{4.4}</span></span></p>
+<p>The temperature-dependent energy parameter, <span class="math inline">\alpha_i(T)</span> for pure component <span class="math inline">i</span>, in the SRK term is calculated by means of <a href="#eq-tempdep-energy">Eq&nbsp;<span>4.5</span></a>.</p>
+<p><span id="eq-tempdep-energy"><span class="math display">
+\alpha_i(T) = a_{0,i} \cdot \left[ 1 + c_{1,i} \cdot \left( 1 - \sqrt{T \cdot T_{c,i}^{-1}} \right) \right]^2
+\tag{4.5}</span></span></p>
+<p>where <span class="math inline">a_{0,i}</span> and <span class="math inline">c_{1,i}</span> are pure component parameters and T_{c,i} is the critical temperature for component <span class="math inline">i</span>. For associating components, the CPA EoS utilises five pure component parameters, <span class="math inline">a_{0,i}</span>, <span class="math inline">b_i</span>, <span class="math inline">c_{1,i}</span>, <span class="math inline">\epsilon^{A_iB_i}</span> and <span class="math inline">\beta^{A_iB_i}</span>. Non-associating components are described by three pure component parameters, <span class="math inline">a_{0,i}</span>, <span class="math inline">b_i</span>, <span class="math inline">c_{1,i}</span>, in a manner similar to that of the “standard” SRK EoS. Pure component parameters for associating components are obtained by fitting the model to experimental vapour pressures and saturated liquid densities of the pure component. The three pure component parameters for non-associating compounds may also be obtained from critical temperature, <span class="math inline">T_{c,i}</span>, critical pressure, <span class="math inline">P_{c,i}</span>, and the acentric factor <span class="math inline">\omega_i</span>.<br>
+In binary systems, the van der Waals one-fluid mixing rules are used for evaluating the SRK parameters, <span class="math inline">\alpha(T)</span> and <span class="math inline">b</span>. This is done according to <a href="#eq-binarysystem-alpha">Eq&nbsp;<span>4.6</span></a>.</p>
+<p><span id="eq-binarysystem-alpha"><span class="math display">
+\alpha(T) = \sum_i \sum_j x_i \cdot x_j \cdot \alpha_{ij}(T)
+\tag{4.6}</span></span></p>
+<p><span id="eq-binarysystem-b"><span class="math display">
+b = \sum_i x_i \cdot b_i
+\tag{4.7}</span></span></p>
+<p>where the “classical” combining rules are applied for the binary <span class="math inline">\alpha_{ij}(T)</span> in the SRK term and the binary <span class="math inline">b_{ij}</span> in the association term.</p>
+<p><span id="eq-binary-aij"><span class="math display">
+\alpha_{ij}(T) = \sqrt{\alpha_i(T) \cdot \alpha_j(T)} \cdot (1 - k_{ij})
+\tag{4.8}</span></span></p>
+<p><span id="eq-binary-bij"><span class="math display">
+b_{ij} = (b_i + b_j) \cdot 2^{-1}
+\tag{4.9}</span></span></p>
+<p><span class="math inline">k_{ij}</span> in <a href="#eq-binary-aij">Eq&nbsp;<span>4.8</span></a> is the binary interaction parameter (BIP) between component <span class="math inline">i</span> and component <span class="math inline">j</span>. <span class="math inline">k_{ij}</span> may be temperature-dependent, e.g.&nbsp;according to the equation <span class="math inline">k_{ij} = a_{kij} + b_{kij} / T</span>. No mixing rules are needed for the association parameters for CPA. Only for cross associating systems, combining rules must be applied to the two association parameters <span class="math inline">\epsilon^{A_iB_j}</span> and <span class="math inline">\beta^{A_iB_j}</span>.</p>
+</section>
+<section id="combining-rules" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="combining-rules"><span class="header-section-number">4.1.2</span> Combining rules</h3>
+<p><span id="eq-combine-epsilon"><span class="math display">
+\epsilon^{A_iB_j} = (\epsilon^{A_iB_i} + \epsilon^{A_jB_j}) \cdot 2^{-1}
+\tag{4.10}</span></span></p>
+<p><span id="eq-combine-beta"><span class="math display">
+\beta^{A_iB_j} = \sqrt{\beta^{A_iB_i} \cdot \beta^{A_jB_j}} + \gamma^{A_iB_j}
+\tag{4.11}</span></span></p>
+<p>The combining rule for <span class="math inline">\beta^{A_iB_j}</span>, <a href="#eq-combine-beta">Eq&nbsp;<span>4.11</span></a>, has been written in a general form, which handles both cross-association between two self-associating molecules as well as cross-association between one self-associating and one non self-associating molecule (solvation). In the case of cross-association between two self-associating molecules, <span class="math inline">\gamma^{A_iB_j}</span> may either be set to zero, in order to allow model prediction according to the standard CR1 combining rule, or it can be used as a handle on the deviation of the cross association interactions from the arithmetic mean. In cases with cross-association involving one non self-associating molecule, <span class="math inline">\gamma^{A_iB_j}</span> is needed to provide cross association interactions. For systems containing three or more components sCPA becomes predictive, since only binary interactions may be accounted for (directly) in the process of parameter estimation.</p>
+<section id="parameters" class="level4" data-number="4.1.2.1">
+<h4 data-number="4.1.2.1" class="anchored" data-anchor-id="parameters"><span class="header-section-number">4.1.2.1</span> Parameters</h4>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cpa/cpa-params-assoc.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Associating component parameters (conventional)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cpa/cpa-params-inert.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Inert component parameters (conventional)</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Using eqs A.3 and the CPA parameters (a0, bCPA, c1), the “corresponding monomer” parameters can be calculated. This implies that we only need to use the three conventional EoS parameters: the (monomer) critical temperature, pressure, and m-parameters. These parameters are listed in Tables A1 and A2, for associating and inert compounds, respectively. For comparison, the experimental critical temperatures used in CPA are also provided in each table.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cpa/cpa-bips-table4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Associating component parameters (CPA)</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cpa/cpa-bips-table6.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">3B Alcohol parameters (CPA)</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/cpa/cpa2-bips-table4.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Correlated binary parameters (CPA)</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="other-properties" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="other-properties"><span class="header-section-number">4.1.3</span> Other properties</h3>
+<p>I don’t know how to turn pressure explicit form of CPA into another form that defines other properties. Those that are defined in terms of Helmholtz free energy seem to be more explicit about the other properties.</p>
+<p>Here is a table I found while <a href="https://www.nist.gov/system/files/documents/srd/jpcrd516.pdf">reading</a> about the Span-Wagner EoS a while ago.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/helmholtz.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Relations of thermodynamic properties to Helmholtz</figcaption><p></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="pc-saft" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="pc-saft"><span class="header-section-number">4.2</span> PC-SAFT</h2>
+<blockquote class="blockquote">
+<p><a href="https://en.wikipedia.org/wiki/PC-SAFT">PC-SAFT</a> (perturbed chain SAFT) is an equation of state that is based on statistical associating fluid theory (SAFT).</p>
+<p>The equation of state is organized into terms that account for different types of intermolecular interactions, including terms for</p>
+<ul>
+<li>the hard chain reference</li>
+<li>dispersion</li>
+<li>association</li>
+<li>polar interactions</li>
+<li>ions</li>
+</ul>
+<p>The equation is most often expressed in terms of the residual Helmholtz energy because all other thermodynamic properties can be easily found by taking the appropriate derivatives of the Helmholtz energy.</p>
+<p><span id="eq-molar-res-F"><span class="math display">
+a = a^{hc} + a^{disp} + a^{assoc} + a^{dipole} + a^{ion}
+\tag{4.12}</span></span></p>
+<p>where <span class="math inline">a</span> is the molar residual Helmholtz energy.</p>
+</blockquote>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The below section is all based on <a href="https://core.ac.uk/download/pdf/185245614.pdf">this paper</a>.</p>
+<p>I haven’t looked too deep into this one but I’m listing it because it can be applied to mixed compositions and is defined in terms of Helmholtz free energy.</p>
+</div>
+</div>
+<p>In 2001, Gross and Sadowski published an extension of their previous work on the application of the perturbation theory of Barker and Henderson [20] for a hard-chain reference fluid [6] wherein the equation of state was extended to real fluids by optimizing the constants of power series to the experimental vapour pressures and vapour, liquid and supercritical densities of n-alkanes. Before tuning the model constants, the pure component parameters for n-alkane compounds had to be obtained. To do this, a LennardJones perturbing potential was assumed by Gross and Sadowski in Eq. 2.11 and Eq. 2.12 and an expression for the average radial distribution function <span class="math inline">g(r)^{hc}</span> for hard chains suggested by Chiew [17] was used. They determined the power series 𝐼1 and 𝐼2 for Lennard-Jones-like chains in the next step. The three pure compound parameters <span class="math inline">m</span>, <span class="math inline">\sigma</span> and <span class="math inline">\epsilon</span> of the n-alkanes were subsequently optimised by fitting the EoS to the vapour pressures and saturate liquid densities of n-alkanes. The coefficients <span class="math inline">a_{0i}</span>, <span class="math inline">a_{1i}</span>, <span class="math inline">a_{2i}</span>, <span class="math inline">b_{0i}</span>, <span class="math inline">b_{1i}</span>, and <span class="math inline">b_{2i}</span> were then adjusted to the vapour pressures and liquid, vapour, and supercritical densities of n-alkanes using the optimised pure compound parameters [6].</p>
+<p>The final form of the equation of state is expressed as <a href="#eq-pcsaft-eos">Eq&nbsp;<span>4.13</span></a> which has two contributions to the free Helmholtz energy, hard-chain (or reference fluid) and dispersion contributions.</p>
+<p><span id="eq-pcsaft-eos"><span class="math display">
+\frac{a^{res}}{RT} = \frac{a_{Hard chain}}{RT} + \frac{a_{Dispersion}}{RT}
+\tag{4.13}</span></span></p>
+<p>where the hard chain contribution to the residual Helmholtz free energy and the dispersion term are calculated using <a href="#eq-pcsaft-hardchain">Eq&nbsp;<span>4.14</span></a> to <a href="#eq-pcsaft-zeta">Eq&nbsp;<span>4.18</span></a></p>
+<p><span id="eq-pcsaft-hardchain"><span class="math display">
+\frac{a_{Hard chain}}{RT} = m \frac{a_{Hard sphere}}{RT} + \frac{a_{chain}}{RT}
+\tag{4.14}</span></span></p>
+<p><span id="eq-pcsaft-chain"><span class="math display">
+\frac{a_{chain}}{RT} = \sum_i x_i (m_i - 1) \ln g_{ii}^{hs}
+\tag{4.15}</span></span></p>
+<p>In <a href="#eq-pcsaft-chain">Eq&nbsp;<span>4.15</span></a>, <span class="math inline">x_i</span> is the component mole fraction, <span class="math inline">m_i</span> is the segment number of component <span class="math inline">i</span> and <span class="math inline">g_{ii}^{hs}</span> is the radial pair distribution function of segments of component <span class="math inline">i</span> in the hard sphere system. The hard sphere contribution to the Helmholtz free energy and the radial distribution function are given by <a href="#eq-pcsaft-hardsphere">Eq&nbsp;<span>4.16</span></a> and <a href="#eq-pcsaft-rdf">Eq&nbsp;<span>4.17</span></a> which are calculated using the radial distribution function and compressibility factor of a hard sphere mixture proposed by Boublik [14] and Mansoori et al.&nbsp;[15]</p>
+<p><span id="eq-pcsaft-hardsphere"><span class="math display">
+\frac{a_{hs}}{RT} = \frac{1}{\zeta_0} \left[ \frac{3 \zeta_1 \zeta_2}{(1 - \zeta_3)} + \frac{\zeta_2^3}{\zeta_3 (1 - \zeta_3) ^2} + (\frac{\zeta_2^3}{\zeta_3^2} - \zeta_3) \ln(1-\zeta_3) \right]
+\tag{4.16}</span></span></p>
+<p><span id="eq-pcsaft-rdf"><span class="math display">
+g_{ij}^{hs} = \frac{1}{(1 - \zeta_3)} + \left( \frac{d_id_j}{d_i + d_j} \right) \frac{3 \zeta_2}{(1 - \zeta_3)^2} + \left( \frac{d_id_j}{d_i + d_j} \right)^2 \frac{2 \zeta_2^2}{(1 - \zeta_3)^2}
+\tag{4.17}</span></span></p>
+<p><span id="eq-pcsaft-zeta"><span class="math display">
+\zeta_n = \frac{\pi}{6} \rho \sum_i x_i m_i \sigma_i^n
+\tag{4.18}</span></span></p>
+<p><span id="eq-pcsaft-dispersion"><span class="math display">
+\frac{a_{Dispersion}}{RT} = -2 \pi \rho I_1(ŋ, \bar{m})\overline{m^2 \epsilon \sigma^3} - \pi \rho \bar{m} C_1 I_2(ŋ, \bar{m}) \overline{m^2 \epsilon^2 \sigma^3}
+\tag{4.19}</span></span></p>
+<p>The van der Waals mixing rules are applies to account for unlike segments interactions in <span class="math inline">\overline{m^2 \epsilon \sigma^3}</span> and <span class="math inline">\overline{m^2 \epsilon^2 \sigma^3}</span> abbreviations. <span class="math inline">I_1</span> and <span class="math inline">I_2</span> expressions are calculated using <a href="#eq-pcsaft-i1">Eq&nbsp;<span>4.20</span></a> and <a href="#eq-pcsaft-i2">Eq&nbsp;<span>4.21</span></a></p>
+<p><span id="eq-pcsaft-i1"><span class="math display">
+I_1(ŋ, \bar{m}) = \sum_{n=1}^6 a_i(m) ŋ^n
+\tag{4.20}</span></span></p>
+<p><span id="eq-pcsaft-i2"><span class="math display">
+I_2(ŋ, \bar{m}) = \sum_{n=1}^6 b_i(m) ŋ^n
+\tag{4.21}</span></span></p>
+<p><span id="eq-pcsaft-bar1"><span class="math display">
+\overline{m^2 \epsilon \sigma^3} = \sum_i \sum_j x_i x_j m_i m_j (\frac{\epsilon_{ij}}{kT}) \sigma_{ij}^3
+\tag{4.22}</span></span></p>
+<p><span id="eq-pcsaft-bar2"><span class="math display">
+\overline{m^2 \epsilon^2 \sigma^3} = \sum_i \sum_j x_i x_j m_i m_j (\frac{\epsilon_{ij}}{kT})^2 \sigma_{ij}^3
+\tag{4.23}</span></span></p>
+<p><span id="eq-pcsaft-mbar"><span class="math display">
+\bar{m} = \sum_i x_i m_i
+\tag{4.24}</span></span></p>
+<p><span class="math display">
+...
+</span></p>
+<section id="parameters-1" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="parameters-1"><span class="header-section-number">4.2.1</span> Parameters</h3>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/pc-saft/Pure compound parameters.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Compound parameters for PC-SAFT</figcaption><p></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p><img src="assets/img/pc-saft/methane optimized bips.png" class="img-fluid" alt="Optimized binary interaction parameters of binary systems containing methane"> <img src="assets/img/pc-saft/co2 optimized bips.png" class="img-fluid" alt="Optimized binary interaction parameter of binary systems containing CO2"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="calculation-of-second-thermodynamic-derivative-properties" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="calculation-of-second-thermodynamic-derivative-properties"><span class="header-section-number">4.2.2</span> Calculation of Second Thermodynamic Derivative Properties</h3>
+<p>Villiers et al.&nbsp;[368] applied SAFT, CPA and the sPC-SAFT equation of states to test the ability of these models to predict heat capacities, pressure–volume derivative, pressure–temperature derivative and speed of sound of n-alkanes and 1-acohols.</p>
+<p>It can be computationally intensive to numerically calculate the derivatives of the necessary terms to reasonable accuracy, so the paper includes analytical expressions for them.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/img/pc-saft/thermodynamic property derivatives.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Thermodynamic property derivatives</figcaption><p></p>
+</figure>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
