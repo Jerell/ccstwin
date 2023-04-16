@@ -7,11 +7,14 @@ book:
   public-url: https://jerell.me/ccstwin/
   repo-url: https://github.com/Jerell/ccstwin
   repo-actions: [edit, issue]
+  reader-mode: true
+  downloads: [pdf, epub]
+
   chapters:
     - index.qmd
     - part: Modelling
       chapters:
-        - network.qmd
+        - networkcomposition.qmd
         - whatif.qmd
         - solving.qmd
     - fluidproperties.qmd
@@ -22,8 +25,12 @@ bibliography: references.bib
 format:
   html:
     theme: cosmo
+    html-math-method: katex
   pdf:
     documentclass: scrreprt
 
 execute:
   freeze: auto
+
+crossref:
+  eq-prefix: Eq

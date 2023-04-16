@@ -1,4 +1,12 @@
 # References {.unnumbered}
 
+I'll come back to this and do proper references later
+
+[cpa](https://web.archive.org/web/20070702082544id_/http://www.ivc-sep.kt.dtu.dk/nvs/Articles/IndEngChemRes6.pdf)
+
+[cpa 2](https://backend.orbit.dtu.dk/ws/portalfiles/portal/105170143/Peter_J_rgensen_Herslund_978_87_93054_54_7.pdf) Phase equilibrium modeling of gas hydrate systems for CO2 capture, page 195
+
+[Phase Equilibria Measurements and Modelling of CO2–Rich Fluids/Brine Systems](https://core.ac.uk/download/pdf/185245614.pdf)
+
 ::: {#refs}
 :::

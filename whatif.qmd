@@ -2,3 +2,4 @@
 
 *What-if modelling* is the evaluation of the network given certain inputs.
 
+It is not the same as [solving the network](solving.qmd).
