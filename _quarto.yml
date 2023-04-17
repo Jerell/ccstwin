@@ -8,7 +8,6 @@ book:
   repo-url: https://github.com/Jerell/ccstwin
   repo-actions: [edit, issue]
   reader-mode: true
-  downloads: [pdf, epub]
 
   chapters:
     - index.qmd
