@@ -202,7 +202,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to <a href="./solving.html">find solutions</a>. Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.</p>
 <p>The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the <a href="./fluidproperties.html#parameters">parameters</a> for the fluid components, then it doesn’t take weeks of training a neural net to calculate thermodynamic properties.</p>
-<p>If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between discontinuity points) as separate allows you to do that.</p>
+<p>If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between <a href="./solving.html#discontinuity-points">discontinuity points</a>) as separate allows you to do that.</p>
 <section id="interface" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">5.1</span> Interface</h2>
 <p>If we need a web UI, it makes sense to use React and D3.</p>
