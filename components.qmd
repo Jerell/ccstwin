@@ -7,7 +7,7 @@ Our component models don't give a lot of visibility into the relationships betwe
 
 When we plug numbers into our [pipe segment model](https://digitaltwindemos.dev.paceccs.com/), it looks like hydrostatic pressure change causes a temperature increase. I don't know if that's correct but recently I was told it wasn't because the fact that the fluid is flowing means that the temperature doesn't increase.
 
-But if you set the elevation gain to -100m and change nothing else, the outlet pressure of our pipe segment model is 16.1°C while the inlet is 16.0°C
+But if you set the elevation gain to -100m and change nothing else, the outlet pressure of our pipe segment model is 16.1°C while the inlet is 16.0°C.
 :::
 
 ## Wells and perforations
@@ -20,7 +20,7 @@ The data points are all from previous flow assurance cases, so they cover the ex
 
 The flowrate search in the splitter relies on the assumption that the relationship between the flowrate in a branch and the outlet pressure is injective. If any two flowrates produce the same outlet pressure then we can't use a binary search to explore the range of outputs.
 
-By testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it's within our domain so it's a number our search could potentially settle on.
+By testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it's within our search domain so it's a number our search could potentially settle on.
 
 ## Inlet pressure search
 
@@ -29,5 +29,5 @@ This also relies on the assumption that the relationship between the input and o
 :::{.callout-important}
 If we set the domain of the search to > 2 kgps, that doesn't solve our problem in general. The peak of the curve is a product of the shape and conditions of the network. If the pipe lengths, heights, diameters, U values, ambient temperatures, roughnesses, etc. were different, the peak probably would be too. By how much and in what direction? We don't know.
 
-Demonstrating that we have a particular relationship between our input and output variables for one section of one network doesn't prove the general case. But if we didn't happen to come across an example of the problem, we wouldn't even be considering changing our search domain.
+Demonstrating that we have a particular relationship between our input and output variables for one section of one configuration of one network doesn't prove the general case. But if we didn't happen to come across an example of the problem, we wouldn't even be considering changing our search domain.
 :::

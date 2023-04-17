@@ -1,8 +1,10 @@
 # Proposal
 
-Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Produce ODEs to be visualized and solved. 
+Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to [find solutions](solving.qmd). Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.
 
-The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the parameters for the fluid components, then it doesn't take weeks of training a neural net to calculate thermodynamic properties.
+The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the [parameters](fluidproperties.qmd#parameters) for the fluid components, then it doesn't take weeks of training a neural net to calculate thermodynamic properties.
+
+If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between discontinuity points) as separate allows you to do that.
 
 ## Interface
 
@@ -10,11 +12,28 @@ If we need a web UI, it makes sense to use React and D3.
 
 ## Model
 
-I would choose Julia for the network model. It's performant and has features and packages that make it well suited for scientific and differentiable programming. When it comes to [solving](https://nextjournal.com/sosiris-de/pde-2018) differential equations in particular, there are [lots of options](https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods). Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.
+I would choose Julia for the network model. Its [speed is comparable to Rust](https://julialang.org/benchmarks/) and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to [solving](https://nextjournal.com/sosiris-de/pde-2018) differential equations in particular, there are [lots of options](https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods). Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.
 
 
 ## Risks and challenges
 
 - **Problem definition and focus:** It's important to understand what we're doing and what a useful outcome looks like.
-- **Lack of resources and help:** It may not always be easy or possible to make progress without input from SMEs who may not always be available.
-- **New language:** If we use Julia, it may be more difficult for people to get involved in the project if they aren't familiar with the language.
+- **Lack of resources and help:** It may not always be easy or possible to make progress without input from SMEs who may not always be available. I don't actually know these techniques myself so I'd be learning as I go.
+- **New language:** If we use Julia, it may be more difficult for people to get involved in the project if they aren't familiar with the language. It's not that hard to [pick up](https://julia.quantecon.org/getting_started_julia/julia_by_example.html) though.
+
+## Timeline
+
+the times here don't mean anything. they are just placeholder values from the [Mermaid documentation](https://mermaid.js.org/syntax/gantt.html)
+
+```{mermaid}
+gantt
+    dateFormat  YYYY-MM-DD
+    section Model
+    Fluid properties :a1, 2023-04-01, 30d
+    Pipe segment     :after a1  , 20d
+    Sequencing     :after a1  , 20d
+    section User Interface
+    Component definition      :2023-04-12  , 12d
+    Results visualization      : 24d
+
+```
