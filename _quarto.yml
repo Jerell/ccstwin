@@ -18,6 +18,7 @@ book:
         - components.qmd
         - solving.qmd
     - fluidproperties.qmd
+    - proposal.qmd
     - references.qmd
 
 bibliography: references.bib

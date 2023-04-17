@@ -1,0 +1,20 @@
+# Proposal
+
+Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Produce ODEs to be visualized and solved. 
+
+The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the parameters for the fluid components, then it doesn't take weeks of training a neural net to calculate thermodynamic properties.
+
+## Interface
+
+If we need a web UI, it makes sense to use React and D3. 
+
+## Model
+
+I would choose Julia for the network model. It's performant and has features and packages that make it well suited for scientific and differentiable programming. When it comes to [solving](https://nextjournal.com/sosiris-de/pde-2018) differential equations in particular, there are [lots of options](https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods). Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.
+
+
+## Risks and challenges
+
+- **Problem definition and focus:** It's important to understand what we're doing and what a useful outcome looks like.
+- **Lack of resources and help:** It may not always be easy or possible to make progress without input from SMEs who may not always be available.
+- **New language:** If we use Julia, it may be more difficult for people to get involved in the project if they aren't familiar with the language.
