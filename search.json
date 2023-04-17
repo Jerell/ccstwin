@@ -9,21 +9,21 @@
   {
     "objectID": "components.html#wells-and-perforations",
     "href": "components.html#wells-and-perforations",
-    "title": "1  Network composition",
+    "title": "1  Components",
     "section": "1.1 Wells and perforations",
     "text": "1.1 Wells and perforations\nThe analogue functions are designed to imitate the behaviour of wells and perforations by taking data about their inputs and outputs and fitting a curve to those data points. We trust the functions to cover the range we were provided data for, but nothing beyond that.\nThe data points are all from previous flow assurance cases, so they cover the expected operating range, but we have little if any data points for the extremes of our input space. Our search algorithms are not constrained to only cover the expected operating range."
   },
   {
     "objectID": "components.html#splitters",
     "href": "components.html#splitters",
-    "title": "1  Network composition",
+    "title": "1  Components",
     "section": "1.2 Splitters",
     "text": "1.2 Splitters\nThe flowrate search in the splitter relies on the assumption that the relationship between the flowrate in a branch and the outlet pressure is injective. If any two flowrates produce the same outlet pressure then we can’t use a binary search to explore the range of outputs.\nBy testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it’s within our domain so it’s a number our search could potentially settle on."
   },
   {
     "objectID": "components.html#inlet-pressure-search",
     "href": "components.html#inlet-pressure-search",
-    "title": "1  Network composition",
+    "title": "1  Components",
     "section": "1.3 Inlet pressure search",
     "text": "1.3 Inlet pressure search\nThis also relies on the assumption that the relationship between the input and output is injective. It’s the same kind of search, but just changing a different variable. It’s possible that a higher inlet pressure does always produce a higher outlet pressure but nobody has demonstrated that."
   },
@@ -39,14 +39,14 @@
     "href": "solving.html#discontinuity-points",
     "title": "3  Solving",
     "section": "3.1 Discontinuity points",
-    "text": "3.1 Discontinuity points\n\n\nTable 3.1: Components where discontinuities occur\n\n\n\n\n\n\n\n\n\nPressure\nTemperature\nFlowrate\n\n\n\n\nInlet\nUnknown\nDepends1\nKnown\n\n\nValve\nUnknown\nKnown\nKnown\n\n\nCompressor\nDepends2\nUnknown\nKnown\n\n\nSplitter\nKnown\nKnown\nUnknown\n\n\nHeater\nKnown\nDepends3\nKnown\n\n\nCooler\nKnown\nDepends\nKnown\n\n\n\n\nAt an inlet, we want to know if there are any solutions with a fluid pressure below our maximum. At a valve, we ask “are there valid solutions with a fluid pressure above X at this point?” Depending on how compressors, heaters, and coolers are defined, we might ask whether a pressure/temperature increase to or by a certain amount at this point produces a valid solution.\nYou can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again.\nIt seems like everything you would want to know about the component specific properties of these is external to the network snapshot. If you want to inspect the power consumption of a compressor train, that can be done by processing the results of a simulation, but it doesn’t actually affect the results. It’s just a way of formatting the output. If you were to calculate it required a certain amount of power to heat your house, you could use that number to calculate the cost of different types of heaters, but the choice of heater doesn’t affect the initial power calculation."
+    "text": "3.1 Discontinuity points\n\n\nTable 3.1: Components where discontinuities occur\n\n\n\n\n\n\n\n\n\nPressure\nTemperature\nFlowrate\n\n\n\n\nInlet\nUnknown\nDepends1\nKnown\n\n\nValve\nUnknown\nKnown\nKnown\n\n\nCompressor\nDepends2\nUnknown\nKnown\n\n\nSplitter\nKnown\nKnown\nUnknown\n\n\nHeater\nKnown\nDepends3\nKnown\n\n\nCooler\nKnown\nDepends\nKnown\n\n\n\n\nAt an inlet, we want to know if there are any solutions with a fluid pressure below our maximum. At a valve, we ask “are there valid solutions with a fluid pressure above X at this point?” Depending on how compressors, heaters, and coolers are defined, we might ask whether a pressure/temperature increase to or by a certain amount at this point produces a valid solution.\nYou can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again.\nIt seems like everything you would want to know about the component specific properties of these is external to the network snapshot. If you want to inspect the power consumption of a compressor train, that can be done by processing the results of a simulation, but it doesn’t actually affect the results. It’s just a way of formatting the output. If you were to calculate that it required a certain amount of power to heat your house, you could use that number to calculate the cost of different types of heaters, but the choice of heater doesn’t affect the initial power calculation."
   },
   {
     "objectID": "solving.html#stability-and-robustness",
     "href": "solving.html#stability-and-robustness",
     "title": "3  Solving",
     "section": "3.2 Stability and robustness",
-    "text": "3.2 Stability and robustness\nBy running snapshots we can see if our inputs produce a valid output. Not much else. We can’t see the boundaries of our input space that separate the valid inputs from the invalid ones. We can’t identify what region of our input space is the most stable unless we manually explore it. We don’t know if increasing the reservoir pressure between snapshots will move our region of valid inputs such that the next solution we settle on from our binary search is on the other side of the region - a point could exist within both regions, again, we’d have to manually explore to find it. We don’t know if our valid region is convex or concave. It’s definitely not a single point, given that there are tolerances on the end pressures. We don’t know if there’s only one region. We don’t know if there’s even one region.\nAll we can say is that a path exists at the checked intervals from A to B but we can’t say how wide it is, whether it’s continuous or how long it’ll last."
+    "text": "3.2 Stability and robustness\nBy running snapshots, we can see if our inputs produce a valid output. Not much else. We can’t see the boundaries of our valid input region (and it is a region rather than a point because we have tolerances on the outlet pressures). We can’t, without manual exploration, identify what parts within our valid input region are most stable. We don’t know if a straight line between two valid points is always entirely contained in the valid region.\nThe valid region will move in a life of field simulation as the reservoir pressures increase, but because we’re doing binary searches, there is no guarantee that the solution point we land on will move at the same rate as the region of valid inputs. We may jump from one side to the other, skipping over an invalid region in the middle if there happens to be one.\nAll we can say is that a path exists at the checked intervals from A to B but we can’t say how wide it is, whether it’s continuous or how long it’ll last. We don’t know if other paths exist or if ours is optimal."
   },
   {
     "objectID": "fluidproperties.html#cpa",
