@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./networkcomposition.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Network composition</span></a>
+  <a href="./components.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Network composition</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -161,7 +161,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#discontinuity-points" id="toc-discontinuity-points" class="nav-link active" data-scroll-target="#discontinuity-points"><span class="toc-section-number">3.1</span>  Discontinuity points</a></li>
+  <li><a href="#stability-and-robustness" id="toc-stability-and-robustness" class="nav-link" data-scroll-target="#stability-and-robustness"><span class="toc-section-number">3.2</span>  Stability and robustness</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/solving.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -183,9 +190,87 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>We don’t know if our network functions are monotonic. It depends on the shape of the network.</p>
+<p>We’re trying to solve partial differential equations. We’re not using either of the two most common methods to do this numerically. If we were to use the <a href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a> we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. If we had a set of equations as described in the <a href="https://en.wikipedia.org/wiki/Finite_element_method">finite element method</a> we could use <a href="https://www.youtube.com/watch?v=vAp6nUMrKYg">automatic differentiation</a> to guide our search. I can’t really say which of these is the better choice but both seem better than what we’re doing now.</p>
+<p>Our current model will tell you the state of the network if you enter a solvable set of inputs. But if you only get answers when you enter values that produce a known output then you don’t gain anything by running the model.</p>
+<p>If you enter an invalid set of inputs, then our output (the final state of the search) is where the model gave up looking for an answer, not what happens when you enter those inputs.</p>
+<section id="discontinuity-points" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="discontinuity-points"><span class="header-section-number">3.1</span> Discontinuity points</h2>
+<div id="tbl-discontinuities" class="anchored">
+<table class="table">
+<caption>Table&nbsp;3.1: Components where discontinuities occur</caption>
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Pressure</th>
+<th>Temperature</th>
+<th>Flowrate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inlet</td>
+<td>Unknown</td>
+<td>Depends<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td>Known</td>
+</tr>
+<tr class="even">
+<td>Valve</td>
+<td>Unknown</td>
+<td>Known</td>
+<td>Known</td>
+</tr>
+<tr class="odd">
+<td>Compressor</td>
+<td>Depends<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
+<td>Unknown</td>
+<td>Known</td>
+</tr>
+<tr class="even">
+<td>Splitter</td>
+<td>Known</td>
+<td>Known</td>
+<td>Unknown</td>
+</tr>
+<tr class="odd">
+<td>Heater</td>
+<td>Known</td>
+<td>Depends<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
+<td>Known</td>
+</tr>
+<tr class="even">
+<td>Cooler</td>
+<td>Known</td>
+<td>Depends</td>
+<td>Known</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>At an inlet, we want to know if there are any solutions with a fluid pressure below our maximum. At a valve, we ask “are there valid solutions with a fluid pressure above X at this point?” Depending on how compressors, heaters, and coolers are defined, we might ask whether a pressure/temperature increase to or by a certain amount at this point produces a valid solution.</p>
+<p>You can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again.</p>
+<p>It seems like everything you would want to know about the component specific properties of these is external to the network snapshot. If you want to inspect the power consumption of a compressor train, that can be done by processing the results of a simulation, but it doesn’t actually affect the results. It’s just a way of formatting the output. If you were to calculate it required a certain amount of power to heat your house, you could use that number to calculate the cost of different types of heaters, but the choice of heater doesn’t affect the initial power calculation.</p>
+</section>
+<section id="stability-and-robustness" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="stability-and-robustness"><span class="header-section-number">3.2</span> Stability and robustness</h2>
+<p>By running snapshots we can see if our inputs produce a valid output. Not much else. We can’t see the boundaries of our input space that separate the valid inputs from the invalid ones. We can’t identify what region of our input space is the most stable unless we manually explore it. We don’t know if increasing the reservoir pressure between snapshots will move our region of valid inputs such that the next solution we settle on from our binary search is on the other side of the region - a point could exist within both regions, again, we’d have to manually explore to find it. We don’t know if our valid region is convex or concave. It’s definitely not a single point, given that there are tolerances on the end pressures. We don’t know if there’s only one region. We don’t know if there’s even one region.</p>
+<p>All we can say is that a path exists at the checked intervals from A to B but we can’t say how wide it is, whether it’s continuous or how long it’ll last.</p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>We can determine inlet temperature as a function of pressure<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Compressors are not well defined<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Increase by or to a value?<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
