@@ -1,3 +1,0 @@
-# Network composition
-
-A pipe network is a composite function.

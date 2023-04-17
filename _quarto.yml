@@ -14,7 +14,7 @@ book:
     - index.qmd
     - part: Modelling
       chapters:
-        - networkcomposition.qmd
+        - components.qmd
         - whatif.qmd
         - solving.qmd
     - fluidproperties.qmd
