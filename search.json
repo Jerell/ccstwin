@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "ccstwin",
+    "title": "CCSTwin",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books."
+    "text": "Summary\nThis is an outline of what I see as problems with our current model, and some alternative approaches.\nI think we would be able to give more comprehensive answers if to questions about pipe networks if we model pipe segments as systems of partial differential equations. Particularly when it comes to designing a network, you want to be able to model segments separately without knowing the valid network configurations in advance."
   },
   {
     "objectID": "whatif.html",
@@ -25,14 +25,14 @@
     "href": "components.html#splitters",
     "title": "2  Components",
     "section": "2.2 Splitters",
-    "text": "2.2 Splitters\nThe flowrate search in the splitter relies on the assumption that the relationship between the flowrate in a branch and the outlet pressure is injective. If any two flowrates produce the same outlet pressure then we can’t use a binary search to explore the range of outputs.\nBy testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it’s within our domain so it’s a number our search could potentially settle on."
+    "text": "2.2 Splitters\nThe flowrate search in the splitter relies on the assumption that the relationship between the flowrate in a branch and the outlet pressure is injective. If any two flowrates produce the same outlet pressure then we can’t use a binary search to explore the range of outputs.\nBy testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it’s within our search domain so it’s a number our search could potentially settle on."
   },
   {
     "objectID": "components.html#inlet-pressure-search",
     "href": "components.html#inlet-pressure-search",
     "title": "2  Components",
     "section": "2.3 Inlet pressure search",
-    "text": "2.3 Inlet pressure search\nThis also relies on the assumption that the relationship between the input and output is injective. It’s the same kind of search, but just changing a different variable. It’s possible that a higher inlet pressure does always produce a higher outlet pressure but nobody has demonstrated that.\n\n\n\n\n\n\nImportant\n\n\n\nIf we set the domain of the search to > 2 kgps, that doesn’t solve our problem in general. The peak of the curve is a product of the shape and conditions of the network. If the pipe lengths, heights, diameters, U values, ambient temperatures, roughnesses, etc. were different, the peak probably would be too. By how much and in what direction? We don’t know.\nDemonstrating that we have a particular relationship between our input and output variables for one section of one network doesn’t prove the general case. But if we didn’t happen to come across an example of the problem, we wouldn’t even be considering changing our search domain."
+    "text": "2.3 Inlet pressure search\nThis also relies on the assumption that the relationship between the input and output is injective. It’s the same kind of search, but just changing a different variable. It’s possible that a higher inlet pressure does always produce a higher outlet pressure but nobody has demonstrated that.\n\n\n\n\n\n\nImportant\n\n\n\nIf we set the domain of the search to > 2 kgps, that doesn’t solve our problem in general. The peak of the curve is a product of the shape and conditions of the network. If the pipe lengths, heights, diameters, U values, ambient temperatures, roughnesses, etc. were different, the peak probably would be too. By how much and in what direction? We don’t know.\nDemonstrating that we have a particular relationship between our input and output variables for one section of one configuration of one network doesn’t prove the general case. But if we didn’t happen to come across an example of the problem, we wouldn’t even be considering changing our search domain."
   },
   {
     "objectID": "solving.html#discontinuity-points",
@@ -74,14 +74,21 @@
     "href": "proposal.html#model",
     "title": "5  Proposal",
     "section": "5.2 Model",
-    "text": "5.2 Model\nI would choose Julia for the network model. It’s performant and has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs."
+    "text": "5.2 Model\nI would choose Julia for the network model. Its speed is comparable to Rust and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs."
   },
   {
     "objectID": "proposal.html#risks-and-challenges",
     "href": "proposal.html#risks-and-challenges",
     "title": "5  Proposal",
     "section": "5.3 Risks and challenges",
-    "text": "5.3 Risks and challenges\n\nProblem definition and focus: It’s important to understand what we’re doing and what a useful outcome looks like.\nLack of resources and help: It may not always be easy or possible to make progress without input from SMEs who may not always be available.\nNew language: If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language."
+    "text": "5.3 Risks and challenges\n\nProblem definition and focus: It’s important to understand what we’re doing and what a useful outcome looks like.\nLack of resources and help: It may not always be easy or possible to make progress without input from SMEs who may not always be available. I don’t actually know these techniques myself so I’d be learning as I go.\nNew language: If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language. It’s not that hard to pick up though."
+  },
+  {
+    "objectID": "proposal.html#timeline",
+    "href": "proposal.html#timeline",
+    "title": "5  Proposal",
+    "section": "5.4 Timeline",
+    "text": "5.4 Timeline\nthe times here don’t mean anything. they are just placeholder values from the Mermaid documentation\n\n\n\n\ngantt\n    dateFormat  YYYY-MM-DD\n    section Model\n    Fluid properties :a1, 2023-04-01, 30d\n    Pipe segment     :after a1  , 20d\n    Sequencing     :after a1  , 20d\n    section User Interface\n    Component definition      :2023-04-12  , 12d\n    Results visualization      : 24d"
   },
   {
     "objectID": "references.html",

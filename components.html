@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ccstwin - 2&nbsp; Components</title>
+<title>CCSTwin - 2&nbsp; Components</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -83,19 +83,19 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ccstwin</a> 
+      <a href="./">CCSTwin</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/Jerell/ccstwin" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.pdf">
+          <a class="dropdown-item sidebar-tools-main-item" href="./CCSTwin.pdf">
             <i class="bi bi-bi-file-pdf pe-1"></i>
           Download PDF
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.epub">
+          <a class="dropdown-item sidebar-tools-main-item" href="./CCSTwin.epub">
             <i class="bi bi-bi-journal pe-1"></i>
           Download ePub
           </a>
@@ -118,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Summary</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -208,7 +208,7 @@ Opacity and intuition
 <div class="callout-body-container callout-body">
 <p>Our component models don’t give a lot of visibility into the relationships between different variables so we’re not developing a strong intuition for how they should behave.</p>
 <p>When we plug numbers into our <a href="https://digitaltwindemos.dev.paceccs.com/">pipe segment model</a>, it looks like hydrostatic pressure change causes a temperature increase. I don’t know if that’s correct but recently I was told it wasn’t because the fact that the fluid is flowing means that the temperature doesn’t increase.</p>
-<p>But if you set the elevation gain to -100m and change nothing else, the outlet pressure of our pipe segment model is 16.1°C while the inlet is 16.0°C</p>
+<p>But if you set the elevation gain to -100m and change nothing else, the outlet pressure of our pipe segment model is 16.1°C while the inlet is 16.0°C.</p>
 </div>
 </div>
 <section id="wells-and-perforations" class="level2" data-number="2.1">
@@ -219,7 +219,7 @@ Opacity and intuition
 <section id="splitters" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="splitters"><span class="header-section-number">2.2</span> Splitters</h2>
 <p>The flowrate search in the splitter relies on the assumption that the relationship between the flowrate in a branch and the outlet pressure is injective. If any two flowrates produce the same outlet pressure then we can’t use a binary search to explore the range of outputs.</p>
-<p>By testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it’s within our domain so it’s a number our search could potentially settle on.</p>
+<p>By testing a range of flowrates for a particular branch, we found a case where the outlet pressure at 2 kgps was higher than both 1 kgps and 3 kgps. This may be extremely low, but it’s within our search domain so it’s a number our search could potentially settle on.</p>
 </section>
 <section id="inlet-pressure-search" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="inlet-pressure-search"><span class="header-section-number">2.3</span> Inlet pressure search</h2>
@@ -235,7 +235,7 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <p>If we set the domain of the search to &gt; 2 kgps, that doesn’t solve our problem in general. The peak of the curve is a product of the shape and conditions of the network. If the pipe lengths, heights, diameters, U values, ambient temperatures, roughnesses, etc. were different, the peak probably would be too. By how much and in what direction? We don’t know.</p>
-<p>Demonstrating that we have a particular relationship between our input and output variables for one section of one network doesn’t prove the general case. But if we didn’t happen to come across an example of the problem, we wouldn’t even be considering changing our search domain.</p>
+<p>Demonstrating that we have a particular relationship between our input and output variables for one section of one configuration of one network doesn’t prove the general case. But if we didn’t happen to come across an example of the problem, we wouldn’t even be considering changing our search domain.</p>
 </div>
 </div>
 

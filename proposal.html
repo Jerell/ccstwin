@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ccstwin - 5&nbsp; Proposal</title>
+<title>CCSTwin - 5&nbsp; Proposal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -83,19 +86,19 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">ccstwin</a> 
+      <a href="./">CCSTwin</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/Jerell/ccstwin" title="Source Code" class="sidebar-tool px-1"><i class="bi bi-github"></i></a>
     <a href="" title="Download" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-download"></i></a>
     <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.pdf">
+          <a class="dropdown-item sidebar-tools-main-item" href="./CCSTwin.pdf">
             <i class="bi bi-bi-file-pdf pe-1"></i>
           Download PDF
           </a>
         </li>
         <li>
-          <a class="dropdown-item sidebar-tools-main-item" href="./ccstwin.epub">
+          <a class="dropdown-item sidebar-tools-main-item" href="./CCSTwin.epub">
             <i class="bi bi-bi-journal pe-1"></i>
           Download ePub
           </a>
@@ -118,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Summary</a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -173,6 +176,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#interface" id="toc-interface" class="nav-link active" data-scroll-target="#interface"><span class="toc-section-number">5.1</span>  Interface</a></li>
   <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">5.2</span>  Model</a></li>
   <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="toc-section-number">5.3</span>  Risks and challenges</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="toc-section-number">5.4</span>  Timeline</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/proposal.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -196,23 +200,50 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Produce ODEs to be visualized and solved.</p>
-<p>The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the parameters for the fluid components, then it doesn’t take weeks of training a neural net to calculate thermodynamic properties.</p>
+<p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to <a href="./solving.html">find solutions</a>. Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.</p>
+<p>The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the <a href="./fluidproperties.html#parameters">parameters</a> for the fluid components, then it doesn’t take weeks of training a neural net to calculate thermodynamic properties.</p>
+<p>If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between discontinuity points) as separate allows you to do that.</p>
 <section id="interface" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">5.1</span> Interface</h2>
 <p>If we need a web UI, it makes sense to use React and D3.</p>
 </section>
 <section id="model" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="model"><span class="header-section-number">5.2</span> Model</h2>
-<p>I would choose Julia for the network model. It’s performant and has features and packages that make it well suited for scientific and differentiable programming. When it comes to <a href="https://nextjournal.com/sosiris-de/pde-2018">solving</a> differential equations in particular, there are <a href="https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods">lots of options</a>. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.</p>
+<p>I would choose Julia for the network model. Its <a href="https://julialang.org/benchmarks/">speed is comparable to Rust</a> and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to <a href="https://nextjournal.com/sosiris-de/pde-2018">solving</a> differential equations in particular, there are <a href="https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods">lots of options</a>. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.</p>
 </section>
 <section id="risks-and-challenges" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="risks-and-challenges"><span class="header-section-number">5.3</span> Risks and challenges</h2>
 <ul>
 <li><strong>Problem definition and focus:</strong> It’s important to understand what we’re doing and what a useful outcome looks like.</li>
-<li><strong>Lack of resources and help:</strong> It may not always be easy or possible to make progress without input from SMEs who may not always be available.</li>
-<li><strong>New language:</strong> If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language.</li>
+<li><strong>Lack of resources and help:</strong> It may not always be easy or possible to make progress without input from SMEs who may not always be available. I don’t actually know these techniques myself so I’d be learning as I go.</li>
+<li><strong>New language:</strong> If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language. It’s not that hard to <a href="https://julia.quantecon.org/getting_started_julia/julia_by_example.html">pick up</a> though.</li>
 </ul>
+</section>
+<section id="timeline" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">5.4</span> Timeline</h2>
+<p>the times here don’t mean anything. they are just placeholder values from the <a href="https://mermaid.js.org/syntax/gantt.html">Mermaid documentation</a></p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">gantt
+    dateFormat  YYYY-MM-DD
+    section Model
+    Fluid properties :a1, 2023-04-01, 30d
+    Pipe segment     :after a1  , 20d
+    Sequencing     :after a1  , 20d
+    section User Interface
+    Component definition      :2023-04-12  , 12d
+    Results visualization      : 24d
+
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
 
 
 </section>
