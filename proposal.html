@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ccstwin - 1&nbsp; What if?</title>
+<title>ccstwin - 5&nbsp; Proposal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./components.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./fluidproperties.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -61,22 +61,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
-  <script>document.addEventListener("DOMContentLoaded", function () {
- var mathElements = document.getElementsByClassName("math");
- var macros = [];
- for (var i = 0; i < mathElements.length; i++) {
-  var texText = mathElements[i].firstChild;
-  if (mathElements[i].tagName == "SPAN") {
-   katex.render(texText.data, mathElements[i], {
-    displayMode: mathElements[i].classList.contains('display'),
-    throwOnError: false,
-    macros: macros,
-    fleqn: false
-   });
-}}});
-  </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -86,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What if?</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -147,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./whatif.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What if?</span></a>
+  <a href="./whatif.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What if?</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -169,7 +153,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./proposal.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></a>
+  <a href="./proposal.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -182,14 +166,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#interface" id="toc-interface" class="nav-link active" data-scroll-target="#interface"><span class="toc-section-number">5.1</span>  Interface</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">5.2</span>  Model</a></li>
+  <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="toc-section-number">5.3</span>  Risks and challenges</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/proposal.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">What if?</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
 </div>
 
 
@@ -204,16 +196,26 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><em>What-if modelling</em> is the evaluation of the network given certain inputs and constraints.</p>
-<p>It is not the same as <a href="./solving.html">solving the network</a>. The forward pass in our search loops could be considered <em>what-if modelling</em> because in that forward pass we’re asking <em>what happens at the outlet if the inlet pressure is X</em> but the output of the model isn’t the answer to that question.</p>
-<p>Evaluating <span class="math inline">f(x) = x^2 - 16</span> would look like <span class="math inline">f(x)\vert_{x=5} = 9</span> whereas solving it might look like <span class="math display">
-x^2 - 16 = 0 \\
-(x - 4)(x + 4) = 0 \\
-x = 4, x = -4
-</span></p>
-<p>What we’re making is closer to an algorithm for solving an equation using a particular method than it is to a function that can be evaluated with any inputs. And the method doesn’t work if certain assumptions aren’t true. And we make no attempt to validate those assumptions.</p>
+<p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Produce ODEs to be visualized and solved.</p>
+<p>The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the parameters for the fluid components, then it doesn’t take weeks of training a neural net to calculate thermodynamic properties.</p>
+<section id="interface" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">5.1</span> Interface</h2>
+<p>If we need a web UI, it makes sense to use React and D3.</p>
+</section>
+<section id="model" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="model"><span class="header-section-number">5.2</span> Model</h2>
+<p>I would choose Julia for the network model. It’s performant and has features and packages that make it well suited for scientific and differentiable programming. When it comes to <a href="https://nextjournal.com/sosiris-de/pde-2018">solving</a> differential equations in particular, there are <a href="https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods">lots of options</a>. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.</p>
+</section>
+<section id="risks-and-challenges" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="risks-and-challenges"><span class="header-section-number">5.3</span> Risks and challenges</h2>
+<ul>
+<li><strong>Problem definition and focus:</strong> It’s important to understand what we’re doing and what a useful outcome looks like.</li>
+<li><strong>Lack of resources and help:</strong> It may not always be easy or possible to make progress without input from SMEs who may not always be available.</li>
+<li><strong>New language:</strong> If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -351,13 +353,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./fluidproperties.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fluid properties</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./components.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Components</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
