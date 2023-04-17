@@ -14,8 +14,8 @@ book:
     - index.qmd
     - part: Modelling
       chapters:
-        - components.qmd
         - whatif.qmd
+        - components.qmd
         - solving.qmd
     - fluidproperties.qmd
     - references.qmd

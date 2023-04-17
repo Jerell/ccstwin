@@ -1,5 +1,15 @@
 # Components
 
+:::{.callout-caution}
+## Opacity and intuition
+
+Our component models don't give a lot of visibility into the relationships between different variables so we're not developing a strong intuition for how they should behave.
+
+When we plug numbers into our [pipe segment model](https://digitaltwindemos.dev.paceccs.com/), it looks like hydrostatic pressure change causes a temperature increase. I don't know if that's correct but recently I was told it wasn't because the fact that the fluid is flowing means that the temperature doesn't increase.
+
+But if you set the elevation gain to -100m and change nothing else, the outlet pressure of our pipe segment model is 16.1°C while the inlet is 16.0°C
+:::
+
 ## Wells and perforations
 
 The analogue functions are designed to imitate the behaviour of wells and perforations by taking data about their inputs and outputs and fitting a curve to those data points. We trust the functions to cover the range we were provided data for, but nothing beyond that.
@@ -15,3 +25,9 @@ By testing a range of flowrates for a particular branch, we found a case where t
 ## Inlet pressure search
 
 This also relies on the assumption that the relationship between the input and output is injective. It's the same kind of search, but just changing a different variable. It's possible that a higher inlet pressure does always produce a higher outlet pressure but nobody has demonstrated that.
+
+:::{.callout-important}
+If we set the domain of the search to > 2 kgps, that doesn't solve our problem in general. The peak of the curve is a product of the shape and conditions of the network. If the pipe lengths, heights, diameters, U values, ambient temperatures, roughnesses, etc. were different, the peak probably would be too. By how much and in what direction? We don't know.
+
+Demonstrating that we have a particular relationship between our input and output variables for one section of one network doesn't prove the general case. But if we didn't happen to come across an example of the problem, we wouldn't even be considering changing our search domain.
+:::
