@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "ccstwin"
+  title: "CCSTwin"
   author: "Jerell James"
   public-url: https://jerell.me/ccstwin/
   repo-url: https://github.com/Jerell/ccstwin

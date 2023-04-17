@@ -1,5 +1,5 @@
-# Preface {.unnumbered}
+# Summary {.unnumbered}
 
-This is a Quarto book.
+This is an outline of what I see as problems with our current model, and some alternative approaches.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+I think we would be able to give more comprehensive answers if to questions about pipe networks if we model pipe segments as systems of partial differential equations. Particularly when it comes to designing a network, you want to be able to model segments separately without knowing the valid network configurations in advance. 
