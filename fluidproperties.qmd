@@ -39,7 +39,7 @@ $$
 \Delta^{A_iB_j} = g(V_m)^{ref} \cdot [\exp(\epsilon^{A_iB_j} \cdot (R \cdot T)^{-1}) - 1] \cdot b_{ij} \cdot \beta^{A_iB_j}
 $${#eq-association-strength}
 
-$\epsilon^{A_iB_j}$ and $\beta^{A_iB_j}$ are the association energy and volume, respectively between site A on molecule $i$ and site B on molecule $j$. $g(V_m)^{ref}$ is the contact value of the radial distribution function for the reference hard sphere fluid system was presented in a simplified form by Kontogeorgis et al. (sCPA [21]). Whereas earlier versions of CPA utilised the Carnahan–Starling expression for the hard-sphere radial distribution function, sCPA uses the expression
+$\epsilon^{A_iB_j}$ and $\beta^{A_iB_j}$ are the association energy and volume, respectively between site A on molecule $i$ and site B on molecule $j$. $g(V_m)^{ref}$ is the contact value of the radial distribution function for the reference hard sphere fluid system. The radial distribution function, $g(V_m)$ was presented in a simplified form by Kontogeorgis et al. (sCPA [21]). Whereas earlier versions of CPA utilised the Carnahan–Starling expression for the hard-sphere radial distribution function, sCPA uses the expression
 shown in @eq-radial-distribution for the simplified hard-sphere radial distribution function.
 
 $$
