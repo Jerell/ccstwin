@@ -74,7 +74,7 @@
     "href": "proposal.html#model",
     "title": "5  Proposal",
     "section": "5.2 Model",
-    "text": "5.2 Model\nI would choose Julia for the network model. Its speed is comparable to Rust and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs."
+    "text": "5.2 Model\nI would choose Julia for the network model. Its speed is comparable to Rust and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from Python, C/Fortran, and other languages and can be called from C."
   },
   {
     "objectID": "proposal.html#risks-and-challenges",
