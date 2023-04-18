@@ -12,7 +12,7 @@ If we need a web UI, it makes sense to use React and D3.
 
 ## Model
 
-I would choose Julia for the network model. Its [speed is comparable to Rust](https://julialang.org/benchmarks/) and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to [solving](https://nextjournal.com/sosiris-de/pde-2018) differential equations in particular, there are [lots of options](https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods). Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs.
+I would choose Julia for the network model. Its [speed is comparable to Rust](https://julialang.org/benchmarks/) and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to [solving](https://nextjournal.com/sosiris-de/pde-2018) differential equations in particular, there are [lots of options](https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods). Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from [Python](https://github.com/JuliaPy/PyCall.jl), [C/Fortran](https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1), and other languages and [can be called from C](https://docs.julialang.org/en/v1/manual/embedding/).
 
 
 ## Risks and challenges
