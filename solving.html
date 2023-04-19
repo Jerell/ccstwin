@@ -243,7 +243,7 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </div>
 <p>At an inlet, we want to know if there are any solutions with a fluid pressure below our maximum. At a valve, we ask “are there valid solutions with a fluid pressure above X at this point?” Depending on how compressors, heaters, and coolers are defined, we might ask whether a pressure/temperature increase to or by a certain amount at this point produces a valid solution.</p>
-<p>You can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again. For every series of pipe segments, we can define a curve similar to that of the reservoir that describes the relationship between inlet and outlet conditions. At different places in the network, we place constraints on these curves and want to know the value of the variable that is the last remaining degree of freedom.</p>
+<p>You can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again. For every series of pipe segments, we can define a curve similar to that of the reservoir, but for a pipe segment it would describe the relationship between inlet and outlet conditions. At different places in the network, we place constraints on these curves and want to know the value of the variable that is the last remaining degree of freedom.</p>
 <div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
 <p><img src="assets/img/splitter curves.png" class="img-fluid figure-img"></p>
