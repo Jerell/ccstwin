@@ -74,7 +74,7 @@
     "href": "proposal.html#model",
     "title": "5  Proposal",
     "section": "5.2 Model",
-    "text": "5.2 Model\nI would choose Julia for the network model. Its speed is comparable to Rust and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from Python, C/Fortran, and other languages and can be called from C."
+    "text": "5.2 Model\nI would choose Julia for the network model. Its speed is comparable to Rust and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to solving differential equations in particular, there are lots of options. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from Python, C/Fortran, and other languages and can be called from C.\n\n5.2.1 Calling Julia from other languages\n\nJuliaCon 2020 | Integrate Julia and Javascript using Node.js extensions | repo\nUsing TCP sockets\nSimple example of calling Julia from C#\nJdotNET\nC# project that uses Julia"
   },
   {
     "objectID": "proposal.html#risks-and-challenges",

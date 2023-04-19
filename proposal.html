@@ -159,7 +159,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#interface" id="toc-interface" class="nav-link active" data-scroll-target="#interface"><span class="toc-section-number">5.1</span>  Interface</a></li>
-  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">5.2</span>  Model</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">5.2</span>  Model</a>
+  <ul class="collapse">
+  <li><a href="#calling-julia-from-other-languages" id="toc-calling-julia-from-other-languages" class="nav-link" data-scroll-target="#calling-julia-from-other-languages"><span class="toc-section-number">5.2.1</span>  Calling Julia from other languages</a></li>
+  </ul></li>
   <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="toc-section-number">5.3</span>  Risks and challenges</a></li>
   <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="toc-section-number">5.4</span>  Timeline</a></li>
   </ul>
@@ -195,6 +198,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="model" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="model"><span class="header-section-number">5.2</span> Model</h2>
 <p>I would choose Julia for the network model. Its <a href="https://julialang.org/benchmarks/">speed is comparable to Rust</a> and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to <a href="https://nextjournal.com/sosiris-de/pde-2018">solving</a> <a href="https://github.com/SciML/DiffEqGPU.jl">differential equations</a> in particular, there are <a href="https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods">lots of options</a>. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from <a href="https://github.com/JuliaPy/PyCall.jl">Python</a>, <a href="https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1">C/Fortran</a>, and other languages and <a href="https://docs.julialang.org/en/v1/manual/embedding/">can be called from C</a>.</p>
+<section id="calling-julia-from-other-languages" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="calling-julia-from-other-languages"><span class="header-section-number">5.2.1</span> Calling Julia from other languages</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=bk3DNy18c0Y">JuliaCon 2020</a> | Integrate Julia and Javascript using Node.js extensions | <a href="https://github.com/maxmouchet/julia-node-extension-demo">repo</a></li>
+<li><a href="https://discourse.julialang.org/t/which-is-the-right-way-to-integrate-julia-program-with-node-js/19223/4">Using TCP sockets</a></li>
+<li><a href="https://gist.github.com/ihnorton/0cbe2ed595d539e859c4">Simple example of calling Julia from C#</a></li>
+<li><a href="https://github.com/HyperSphereStudio/JdotNET">JdotNET</a></li>
+<li><a href="https://github.com/PiResearchTech/Ayudha">C# project that uses Julia</a></li>
+</ul>
+</section>
 </section>
 <section id="risks-and-challenges" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="risks-and-challenges"><span class="header-section-number">5.3</span> Risks and challenges</h2>
