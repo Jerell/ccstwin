@@ -64,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -161,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/solving.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 <p>We’re trying to solve partial differential equations. We’re not using either of the two most common methods to do this numerically. If we were to use the <a href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a> we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. If we had a set of equations as described in the <a href="https://en.wikipedia.org/wiki/Finite_element_method">finite element method</a> we could use <a href="https://www.youtube.com/watch?v=vAp6nUMrKYg">automatic differentiation</a> to guide our search. I can’t really say which of these is the better choice but both seem better than what we’re doing now.</p>
 <p>Our current model will tell you the state of the network if you enter a solvable set of inputs. But if you only get answers when you enter values that produce a known output then you don’t gain anything by running the model.</p>
 <p>If you enter an invalid set of inputs, then our output (the final state of the search) is where the model gave up looking for an answer, not what happens when you enter those inputs.</p>
-<section id="discontinuity-points" class="level2" data-number="3.1">
+<section id="discontinuity-points" class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="discontinuity-points"><span class="header-section-number">3.1</span> Discontinuity points</h2>
 <div id="tbl-discontinuities" class="anchored">
 <table class="table">
@@ -243,8 +243,14 @@ ul.task-list li input[type="checkbox"] {
 </table>
 </div>
 <p>At an inlet, we want to know if there are any solutions with a fluid pressure below our maximum. At a valve, we ask “are there valid solutions with a fluid pressure above X at this point?” Depending on how compressors, heaters, and coolers are defined, we might ask whether a pressure/temperature increase to or by a certain amount at this point produces a valid solution.</p>
-<p>You can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again.</p>
-<p>It seems like everything you would want to know about the component specific properties of these is external to the network snapshot. If you want to inspect the power consumption of a compressor train, that can be done by processing the results of a simulation, but it doesn’t actually affect the results. It’s just a way of formatting the output. If you were to calculate that it required a certain amount of power to heat your house, you could use that number to calculate the cost of different types of heaters, but the choice of heater doesn’t affect the initial power calculation.</p>
+<p>You can produce direct answers to these with a good pipe segment model. If you were to change the set point of a valve, you wouldn’t need to run all your simulations for the entire network again. For every series of pipe segments, we can define a curve similar to that of the reservoir that describes the relationship between inlet and outlet conditions. At different places in the network, we place constraints on these curves and want to know the value of the variable that is the last remaining degree of freedom.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="assets/img/splitter curves.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption margin-caption">Inlet pressure demand curves for a three branch split. Here, a curve represents the relationship between inlet pressure and flowrate for a series of pipe segments with a given end pressure. The red line is the pressure that we want a flowrate solution for: the pressure of the fluid arriving at the splitter. We have a solution when the curves intersect with the red line in the correct places, such that the flowrates required by each branch sum to the total flow into the splitter.</figcaption><p></p>
+</figure>
+</div>
+<p>It seems like everything you would want to know about the component specific properties of active components that do work on the fluid is external to the network snapshot. If you want to inspect the power consumption of a compressor train, that can be done by processing the results of a simulation, but it doesn’t actually affect the results. It’s just a way of formatting the output. If you were to calculate that it required a certain amount of power to heat your house, you could use that number to calculate the cost of different types of heaters, but the choice of heater doesn’t affect the initial power calculation.</p>
 </section>
 <section id="stability-and-robustness" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="stability-and-robustness"><span class="header-section-number">3.2</span> Stability and robustness</h2>
