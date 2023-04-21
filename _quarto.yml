@@ -16,7 +16,6 @@ book:
         - whatif.qmd
         - components.qmd
         - solving.qmd
-    - fluidproperties.qmd
     - proposal.qmd
     - references.qmd
 

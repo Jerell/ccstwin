@@ -2,8 +2,6 @@
 
 Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to [find solutions](solving.qmd). Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.
 
-The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the [parameters](fluidproperties.qmd#parameters) for the fluid components, then it doesn't take weeks of training a neural net to calculate thermodynamic properties.
-
 If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between [discontinuity points](solving.qmd#discontinuity-points)) as separate allows you to do that.
 
 ## Interface
