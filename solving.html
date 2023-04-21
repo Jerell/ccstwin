@@ -181,9 +181,8 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>We’re trying to solve partial differential equations. We’re not using either of the two most common methods to do this numerically. If we were to use the <a href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a> we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. If we had a set of equations as described in the <a href="https://en.wikipedia.org/wiki/Finite_element_method">finite element method</a> we could use <a href="https://www.youtube.com/watch?v=vAp6nUMrKYg">automatic differentiation</a> to guide our search. I can’t really say which of these is the better choice but both seem better than what we’re doing now.</p>
+<p>We’re trying to solve partial differential equations. We’re not using either of the two most common methods to do this numerically. If we were to use the <a href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a> we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>Our current model will tell you the state of the network if you enter a solvable set of inputs. But if you only get answers when you enter values that produce a known output then you don’t gain anything by running the model.</p>
-<p>If you enter an invalid set of inputs, then our output (the final state of the search) is where the model gave up looking for an answer, not what happens when you enter those inputs.</p>
 <section id="discontinuity-points" class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="discontinuity-points"><span class="header-section-number">3.1</span> Discontinuity points</h2>
 <div id="tbl-discontinuities" class="anchored">
@@ -207,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>Inlet</td>
 <td>Unknown</td>
-<td>Depends<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td>Depends<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
 <td>Known</td>
 </tr>
 <tr class="even">
@@ -218,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="odd">
 <td>Compressor</td>
-<td>Depends<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></td>
+<td>Depends<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
 <td>Unknown</td>
 <td>Known</td>
 </tr>
@@ -231,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
 <tr class="odd">
 <td>Heater</td>
 <td>Known</td>
-<td>Depends<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
+<td>Depends<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
 <td>Known</td>
 </tr>
 <tr class="even">
@@ -264,9 +263,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>We can determine inlet temperature as a function of pressure<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Compressors are not well defined<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Increase by or to a value?<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Some thought would need to be given to the discretization of pipes, but SMEs like Eduardo and Ben would be less focused on implementation details like this. Emilio would be more able to help.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We can determine inlet temperature as a function of pressure<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Compressors are not well defined<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Increase by or to a value?<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

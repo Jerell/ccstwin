@@ -191,6 +191,8 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to <a href="./solving.html">find solutions</a>. Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.</p>
 <p>If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between <a href="./solving.html#discontinuity-points">discontinuity points</a>) as separate allows you to do that.</p>
+<p>We could allow the user to choose from a variety of options for modelling fluid properties. Whether that’s the lookup tables we use now, Hafnium’s modelling software, or existing Julia packages.</p>
+<p>Modelling a series of pipe segments on its own may not be particularly powerful on its own, but it is necessary for a breadboard model and would form the basis for a larger network solver. Further consideration is needed for how that network solver would function.</p>
 <section id="interface" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">4.1</span> Interface</h2>
 <p>If we need a web UI, it makes sense to use React and D3.</p>
