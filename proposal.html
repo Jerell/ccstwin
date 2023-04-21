@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>CCSTwin - 5&nbsp; Proposal</title>
+<title>CCSTwin - 4&nbsp; Proposal</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./references.html" rel="next">
-<link href="./fluidproperties.html" rel="prev">
+<link href="./solving.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -136,12 +136,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./fluidproperties.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fluid properties</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./proposal.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></a>
+  <a href="./proposal.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Proposal</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -158,13 +153,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#interface" id="toc-interface" class="nav-link active" data-scroll-target="#interface"><span class="toc-section-number">5.1</span>  Interface</a></li>
-  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">5.2</span>  Model</a>
+  <li><a href="#interface" id="toc-interface" class="nav-link active" data-scroll-target="#interface"><span class="toc-section-number">4.1</span>  Interface</a></li>
+  <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model"><span class="toc-section-number">4.2</span>  Model</a>
   <ul class="collapse">
-  <li><a href="#calling-julia-from-other-languages" id="toc-calling-julia-from-other-languages" class="nav-link" data-scroll-target="#calling-julia-from-other-languages"><span class="toc-section-number">5.2.1</span>  Calling Julia from other languages</a></li>
+  <li><a href="#calling-julia-from-other-languages" id="toc-calling-julia-from-other-languages" class="nav-link" data-scroll-target="#calling-julia-from-other-languages"><span class="toc-section-number">4.2.1</span>  Calling Julia from other languages</a></li>
   </ul></li>
-  <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="toc-section-number">5.3</span>  Risks and challenges</a></li>
-  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="toc-section-number">5.4</span>  Timeline</a></li>
+  <li><a href="#risks-and-challenges" id="toc-risks-and-challenges" class="nav-link" data-scroll-target="#risks-and-challenges"><span class="toc-section-number">4.3</span>  Risks and challenges</a></li>
+  <li><a href="#timeline" id="toc-timeline" class="nav-link" data-scroll-target="#timeline"><span class="toc-section-number">4.4</span>  Timeline</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/Jerell/ccstwin/edit/main/proposal.qmd" class="toc-action">Edit this page</a></p><p><a href="https://github.com/Jerell/ccstwin/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -173,7 +168,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Proposal</span></h1>
 </div>
 
 
@@ -185,7 +180,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 19, 2023</p>
+      <p class="date-modified">April 21, 2023</p>
     </div>
   </div>
     
@@ -195,17 +190,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>Create an interface for defining and sequencing network segments. Model the network as a system of PDEs. Use the finite difference method to <a href="./solving.html">find solutions</a>. Produce visualizations that inform the user of the relevant thresholds and margins necessary to provide context for the model output.</p>
-<p>The solutions would have to be computed whenever we want results for a different network definition or fluid composition, but if you know the <a href="./fluidproperties.html#parameters">parameters</a> for the fluid components, then it doesn’t take weeks of training a neural net to calculate thermodynamic properties.</p>
 <p>If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between <a href="./solving.html#discontinuity-points">discontinuity points</a>) as separate allows you to do that.</p>
-<section id="interface" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">5.1</span> Interface</h2>
+<section id="interface" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="interface"><span class="header-section-number">4.1</span> Interface</h2>
 <p>If we need a web UI, it makes sense to use React and D3.</p>
 </section>
-<section id="model" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="model"><span class="header-section-number">5.2</span> Model</h2>
+<section id="model" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="model"><span class="header-section-number">4.2</span> Model</h2>
 <p>I would choose Julia for the network model. Its <a href="https://julialang.org/benchmarks/">speed is comparable to Rust</a> and it has features and packages that make it well suited for scientific and differentiable programming. When it comes to <a href="https://nextjournal.com/sosiris-de/pde-2018">solving</a> <a href="https://github.com/SciML/DiffEqGPU.jl">differential equations</a> in particular, there are <a href="https://github.com/JuliaPDE/SurveyofPDEPackages#finite-difference-methods">lots of options</a>. Functions can be written in a way that more closely resembles the maths notation that would be familiar to SMEs. Julia can also use libraries from <a href="https://github.com/JuliaPy/PyCall.jl">Python</a>, <a href="https://docs.julialang.org/en/v1/manual/calling-c-and-fortran-code/#Calling-C-and-Fortran-Code-1">C/Fortran</a>, and other languages and <a href="https://docs.julialang.org/en/v1/manual/embedding/">can be called from C</a>.</p>
-<section id="calling-julia-from-other-languages" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="calling-julia-from-other-languages"><span class="header-section-number">5.2.1</span> Calling Julia from other languages</h3>
+<section id="calling-julia-from-other-languages" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="calling-julia-from-other-languages"><span class="header-section-number">4.2.1</span> Calling Julia from other languages</h3>
 <ul>
 <li><a href="https://www.youtube.com/watch?v=bk3DNy18c0Y">JuliaCon 2020</a> | Integrate Julia and Javascript using Node.js extensions | <a href="https://github.com/maxmouchet/julia-node-extension-demo">repo</a></li>
 <li><a href="https://discourse.julialang.org/t/which-is-the-right-way-to-integrate-julia-program-with-node-js/19223/4">Using TCP sockets</a></li>
@@ -215,16 +209,16 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </section>
 </section>
-<section id="risks-and-challenges" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="risks-and-challenges"><span class="header-section-number">5.3</span> Risks and challenges</h2>
+<section id="risks-and-challenges" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="risks-and-challenges"><span class="header-section-number">4.3</span> Risks and challenges</h2>
 <ul>
 <li><strong>Problem definition and focus:</strong> It’s important to understand what we’re doing and what a useful outcome looks like.</li>
 <li><strong>Lack of resources and help:</strong> It may not always be easy or possible to make progress without input from SMEs who may not always be available. I don’t actually know these techniques myself so I’d be learning as I go.</li>
 <li><strong>New language:</strong> If we use Julia, it may be more difficult for people to get involved in the project if they aren’t familiar with the language. It’s not that hard to <a href="https://julia.quantecon.org/getting_started_julia/julia_by_example.html">pick up</a> though.</li>
 </ul>
 </section>
-<section id="timeline" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">5.4</span> Timeline</h2>
+<section id="timeline" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="timeline"><span class="header-section-number">4.4</span> Timeline</h2>
 <p>the times here don’t mean anything. they are just placeholder values from the <a href="https://mermaid.js.org/syntax/gantt.html">Mermaid documentation</a></p>
 <div class="cell">
 <div class="cell-output-display">
@@ -388,8 +382,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./fluidproperties.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Fluid properties</span></span>
+      <a href="./solving.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Solving</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
