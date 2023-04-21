@@ -5,7 +5,7 @@ fig-cap-location: margin
 
 # Solving {#sec-solving}
 
-We're trying to solve partial differential equations. We're not using either of the two most common methods to do this numerically. If we were to use the [finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method) we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. ^[Some thought would need to be given to the discretization of pipes, but SMEs like Eduardo and Ben would be less focused on implementation details like this. Emilio would be more able to help.]
+We're trying to solve partial differential equations. We're not using either of the two most common methods to do this numerically. If we were to use the [finite difference method](https://en.wikipedia.org/wiki/Finite_difference_method) we could represent our components as matrices and efficiently calculate the output of a component for a range of inputs by multiplying a fluid matrix with a component matrix. ^[We would need give some thought to the discretization of pipes, but SMEs like Eduardo and Ben would be less focused on implementation details like this. Emilio would be more able to help.]
 
 Our current model will tell you the state of the network if you enter a solvable set of inputs. But if you only get answers when you enter values that produce a known output then you don't gain anything by running the model.
 
