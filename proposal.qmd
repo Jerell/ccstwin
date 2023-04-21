@@ -4,7 +4,7 @@ Create an interface for defining and sequencing network segments. Model the netw
 
 If you want to be able to do compositional tracking, you need to be able to model a subsection of the network with a different composition than the rest anyway. Treating each branch (or section between [discontinuity points](solving.qmd#discontinuity-points)) as separate allows you to do that.
 
-We could allow the user to choose from a variety of options for modelling fluid properties. Whether that's the lookup tables we use now, Hafnium's modelling software, or existing Julia packages.
+We could allow the user to choose from a variety of options for modelling fluid properties. Whether that's the lookup tables we use now, Hafnium's modelling software, or [existing Julia packages](https://github.com/ClapeyronThermo/Clapeyron.jl).
 
 Modelling a series of pipe segments on its own may not be particularly powerful on its own, but it is necessary for a breadboard model and would form the basis for a larger network solver. Further consideration is needed for how that network solver would function.
 
