@@ -74,7 +74,7 @@
     "href": "proposal.html#timeline",
     "title": "4  Proposal",
     "section": "4.4 Timeline",
-    "text": "4.4 Timeline\nthe times here don’t mean anything. they are just placeholder values from the Mermaid documentation\n\n\n\n\ngantt\n    dateFormat  YYYY-MM-DD\n    section Model\n    Fluid properties :a1, 2023-04-01, 30d\n    Pipe segment     :after a1  , 20d\n    Sequencing     :after a1  , 20d\n    section User Interface\n    Component definition      :2023-04-12  , 12d\n    Results visualization      : 24d"
+    "text": "4.4 Timeline\nthe times here don’t mean anything. they are just placeholder values from the Mermaid documentation\n\n\n\n\ngantt\n    dateFormat  YYYY-MM-DD\n    section Model\n    Pipe segment   :a1, 2023-04-01, 30d\n    Sequencing     :after a1  , 20d\n    section User Interface\n    Component definition      :2023-04-12  , 12d\n    Results visualization      : 24d"
   },
   {
     "objectID": "references.html",
