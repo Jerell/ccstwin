@@ -39,8 +39,7 @@ the times here don't mean anything. they are just placeholder values from the [M
 gantt
     dateFormat  YYYY-MM-DD
     section Model
-    Fluid properties :a1, 2023-04-01, 30d
-    Pipe segment     :after a1  , 20d
+    Pipe segment   :a1, 2023-04-01, 30d
     Sequencing     :after a1  , 20d
     section User Interface
     Component definition      :2023-04-12  , 12d
